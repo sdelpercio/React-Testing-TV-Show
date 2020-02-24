@@ -10,14 +10,13 @@ import './styles.css';
 
 export default function App() {
 	const [show, setShow] = useState(null);
-	const [seasons, setSeasons] = useState([]);
+	const [seasons, setSeasons] = useState({});
 	const [selectedSeason, setSelectedSeason] = useState('');
 	const episodes = seasons[selectedSeason] || [];
 
 	useEffect(() => {
 		fetchShow()
 			.then(res => {
-				console.log('here is the data response', res.data);
 				setShow(res.data);
 				setSeasons(formatSeasons(res.data._embedded.episodes));
 			})
